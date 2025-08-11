@@ -1,3 +1,7 @@
+#so this is the flask behind those html files so when things get done lets say you have provided name/age/gender/sport here you get
+#redirected to like register.html, 
+
+
 from flask import Flask,render_template,request
 
 app = Flask(__name__)
