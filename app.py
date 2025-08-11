@@ -12,11 +12,12 @@ SPORT =[
     "tennis"
 ]
 
-@app.route("/")
+@app.route("/") # this is how flask knows to first show index.html and when its filled
+                # with the required info it gets redirected to bellow(register.html)
 def index():
     return render_template("index.html",sports=SPORT)
 
-@app.route("/register", methods=["POST"])
+@app.route("/register", methods=["POST"]) # this is the register.html that it will be redirected to using POST method
 def register():
     sport = request.form.get("sport", "not provided")
     sex = request.form.get("sex", "Not provided")
