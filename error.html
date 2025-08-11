@@ -1,9 +1,9 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} #<====== jinja form to tell all the html files are connected to layout.html
 
-{% block body %}
+{% block body %} #<======= jinja form to tell what this block is called and is available as well in layout.html
 
-<h1>Error</h1>
+<h1>Error</h1>         # handeles errors
 
     <p>an error popped up becuase {{ message }}</p>
 
-{% endblock %}
+{% endblock %} #<====== jinja form to tell that this block is ended
