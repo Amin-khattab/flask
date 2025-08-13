@@ -12,6 +12,8 @@ SPORT =[
     "tennis"
 ]
 
+REGISTRANTS = {} #to store users information
+
 @app.route("/") # this is how flask knows to first show index.html and when its filled
                 # with the required info it gets redirected to bellow(register.html)
 def index():
@@ -41,6 +43,16 @@ def register():
 
         return render_template("error.html",message = "sport must be between these that have been provided")
 
-    else:
+        else:
 
+        REGISTRANTS[name] = { #here the users info is registered for later use in /registrants
+            "sport":sport,
+            "age":age,
+            "sex":sex
+        }
+    
         return render_template("register.html",name=name,age=age,sex=sex,sport=sport)
+
+@app.route("/registrants")
+def registrants():
+    return render_template("registrants.html", registrants=REGISTRANTS)
