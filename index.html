@@ -1,22 +1,8 @@
-{%extends "layout.html"%}
+{% extends "layout.html" %}
 
-{%block body%}
+{% block body %}
+        <form action="/login" method="post">
+    <button>login</button>
+        </form>
 
-    <h1>Registration</h1>
-    <form action="/register" method=post>
-        <input required placeholder="Name" name = "name" autofocus type="text">
-        <input required placeholder="Age" name = "age" autofocus type="text">
-        <input required placeholder="Sex" name = "sex" autofocus type="text">
-
-
-        <select name = "sport" required>
-            <option disabled selected name =sport>sport</option>
-
-            {% for sport in sports %}
-                 <option name={{ sport }}>{{ sport }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Regsiter</button>
-    </form>
-
-{%endblock%}
+{% endblock %}

@@ -1,58 +1,32 @@
-#so this is the flask behind those html files so when things get done lets say you have provided name/age/gender/sport here you get
-#redirected to like register.html, 
-
-
-from flask import Flask,render_template,request
+from flask import Flask,request,render_template,session,redirect
+from flask_session import Session
 
 app = Flask(__name__)
 
-SPORT =[
-    "basketball",
-    "football",
-    "tennis"
-]
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
-REGISTRANTS = {} #to store users information
-
-@app.route("/") # this is how flask knows to first show index.html and when its filled
-                # with the required info it gets redirected to bellow(register.html)
+@app.route("/")
 def index():
-    return render_template("index.html",sports=SPORT)
+    return render_template("index.html")
 
-@app.route("/register", methods=["POST"]) # this is the register.html that it will be redirected to using POST method
-def register():
-    sport = request.form.get("sport", "not provided")
-    sex = request.form.get("sex", "Not provided")
-    age = request.form.get("age", "Not provided")
-    name = request.form.get("name", "whoever you are")
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        return render_template("login.html")
+    return redirect("/")
 
+@app.route("/check", methods=["POST", "GET"])
+def check():
+    if request.method == "POST":
+        name = request.form.get("name")
+        session["name"] = name
+        return render_template("check.html", name=name)
+    else:
+        return render_template("check.html", name=session.get("name"))
 
-    if not name:
-
-        return render_template("error.html",message="missing name")
-
-    elif not age.isdigit() or not 1 < int(age) < 120:
-
-        return render_template("error.html", message = "age must be a number and between 1-120")
-
-    elif sex not in ["male","female","other"]:
-
-        return render_template("error.html",message = "gender must be between male,female,other")
-
-    elif sport not in SPORT:
-
-        return render_template("error.html",message = "sport must be between these that have been provided")
-
-        else:
-
-        REGISTRANTS[name] = { #here the users info is registered for later use in /registrants
-            "sport":sport,
-            "age":age,
-            "sex":sex
-        }
-    
-        return render_template("register.html",name=name,age=age,sex=sex,sport=sport)
-
-@app.route("/registrants")
-def registrants():
-    return render_template("registrants.html", registrants=REGISTRANTS)
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
