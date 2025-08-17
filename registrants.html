@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+<table>
+
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>age</th>
+            <th>gender</th>
+            <th>game</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for name,details in people.items() %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ details["age"] }}</td>
+                <td>{{ details["gender"] }}</td>
+                <td>{{ details["game"] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

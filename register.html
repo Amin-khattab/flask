@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <h3>your registered as </h3>
+    <p>{{ name }}, age is {{ age }}, gender is {{ gender }} adn likes {{ game }}</p>
+
+    <form action="/registrants" method="post">
+
+    <button type="submit">registrants</button>
+    </form>
+{% endblock %}

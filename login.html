@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    {% if email %}
+        your logged in as {{ email }} <a href="/logout">logout</a>
+
+        <h3>want to register yourself click the button down below</h3>
+        <form action="/check" method="post">
+        <button type="submit">register</button>
+        </form>
+    {% else %}
+        your not logged in. <a href="/">log in</a>
+    {% endif %}
+
+
+{% endblock %}

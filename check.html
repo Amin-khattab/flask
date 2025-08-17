@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+<form action="/register" method="post">
+
+    <input placeholder="name" name = "name" autocomplete="False" autofocus required>
+    <input placeholder="age" name = "age" autocomplete="False" autofocus required>
+    <input placeholder="gender" name = "gender" autocomplete="False" autofocus required>
+
+    <select name = "game">
+        <option disabled selected >Games</option>
+        <option name="KCD2">KCD2</option>
+        <option name="DS2">Death Stranding</option>
+        <option name ="Minecraft">Minecraft</option>
+
+
+    </select>
+
+    <button type="submit">register</button>
+
+
+</form>
+
+
+
+{% endblock %}
